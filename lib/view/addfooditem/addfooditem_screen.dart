@@ -9,8 +9,20 @@ class AddFoodItemScreen extends StatefulWidget {
 }
 
 class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
+  final TextEditingController _foodNameController = TextEditingController();
+  final TextEditingController _foodDescriptionController =
+      TextEditingController();
+  final TextEditingController _foodPriceController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: AddFoodItemWidget());
+    return SafeArea(
+      child: AddFoodItemWidget(
+        foodNameController: _foodNameController,
+        foodDescriptionController: _foodDescriptionController,
+        foodIsVegetarian: true,
+        foodPriceController: _foodPriceController,
+      ),
+    );
   }
 }
