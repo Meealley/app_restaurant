@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "637421680304",
+    "project_id": "kfc-eats",
+    "storage_bucket": "kfc-eats.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637421680304:android:f0b81557dd2d2c99b82d75",
+        "android_client_info": {
+          "package_name": "com.example.kfc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlSmB5j-dWvRHw4ru6-Uso4dhtq4I3m7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637421680304:android:33096121ed0dadf5b82d75",
+        "android_client_info": {
+          "package_name": "com.example.kfc_restaurant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlSmB5j-dWvRHw4ru6-Uso4dhtq4I3m7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
