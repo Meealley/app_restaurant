@@ -21,8 +21,10 @@ class _SigninLogiceScreenState extends State<SigninLogiceScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Image(
-        image: AssetImage("assets/images/signin.png"),
+      body: Center(
+        child: Image(
+          image: AssetImage("assets/images/signin.png"),
+        ),
       ),
     );
   }

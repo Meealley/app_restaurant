@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kfc_restaurant/controller/provider/auth_provider.dart';
+import 'package:kfc_restaurant/controller/provider/restaurant_register_provider.dart';
 import 'package:kfc_restaurant/firebase_options.dart';
 import 'package:kfc_restaurant/view/authscreens/signin_logic_screen.dart';
 
@@ -27,6 +28,9 @@ class KFCApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (_) => MobileAuthProvier(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => RestaurantRegisterProvider(),
           )
         ],
         child: MaterialApp(
