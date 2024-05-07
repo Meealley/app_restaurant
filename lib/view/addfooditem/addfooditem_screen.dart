@@ -13,6 +13,7 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
   final TextEditingController _foodDescriptionController =
       TextEditingController();
   final TextEditingController _foodPriceController = TextEditingController();
+  bool _foodIsVegetarian = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,18 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
       child: AddFoodItemWidget(
         foodNameController: _foodNameController,
         foodDescriptionController: _foodDescriptionController,
-        foodIsVegetarian: true,
+        foodIsVegetarian: _foodIsVegetarian,
         foodPriceController: _foodPriceController,
+        onTappedIsVegetarian: () {
+          setState(() {
+            _foodIsVegetarian = true;
+          });
+        },
+        onTappedNonVegetarian: () {
+          setState(() {
+            _foodIsVegetarian = false;
+          });
+        },
       ),
     );
   }

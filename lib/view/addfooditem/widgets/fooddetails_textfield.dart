@@ -25,7 +25,7 @@ class FoodDetailsTextField extends StatelessWidget {
             style: const TextStyle(
               color: Colors.black, // Change the color of the regular text
               fontSize: 16,
-              // fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w600,
 
               fontFamily: "Manrope",
             ),
