@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kfc_restaurant/view/addfooditem/widgets/fooddetails_textfield.dart';
+import 'package:kfc_restaurant/utils/custom_textfield.dart';
 import 'package:sizer/sizer.dart';
 
 class AddFoodItemWidget extends StatelessWidget {

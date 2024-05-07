@@ -35,5 +35,7 @@ class ImageServices {
       String imageURL = await ref.getDownloadURL();
       imagesURL.add(imageURL);
     });
+
+    return imagesURL;
   }
 }

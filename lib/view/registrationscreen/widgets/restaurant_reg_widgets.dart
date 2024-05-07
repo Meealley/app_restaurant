@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kfc_restaurant/utils/custom_textfield.dart';
 import 'package:sizer/sizer.dart';
@@ -6,11 +7,13 @@ import 'package:sizer/sizer.dart';
 class RestaurantRegistrationWidget extends StatelessWidget {
   final TextEditingController restaurantNameController;
   final TextEditingController restaurantLicenseController;
+  final VoidCallback onTapped;
 
   const RestaurantRegistrationWidget({
     super.key,
     required this.restaurantNameController,
     required this.restaurantLicenseController,
+    required this.onTapped,
   });
 
   @override
@@ -25,40 +28,43 @@ class RestaurantRegistrationWidget extends StatelessWidget {
           SizedBox(
             height: 2.h,
           ),
-          Container(
-            height: 20.h,
-            width: 94.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.sp),
-              color: Colors.grey.shade300,
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 4.h,
-                ),
-                Container(
-                  height: 5.h,
-                  width: 5.h,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.black),
+          GestureDetector(
+            onTap: onTapped,
+            child: Container(
+              height: 20.h,
+              width: 94.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.sp),
+                color: Colors.grey.shade300,
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 4.h,
                   ),
-                  child: const Center(
-                    child: FaIcon(
-                      FontAwesomeIcons.plus,
-                      // color: Colors.white,
+                  Container(
+                    height: 5.h,
+                    width: 5.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.black),
+                    ),
+                    child: const Center(
+                      child: FaIcon(
+                        FontAwesomeIcons.plus,
+                        // color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 1.h),
-                Text(
-                  "Add",
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                  ),
-                )
-              ],
+                  SizedBox(height: 1.h),
+                  Text(
+                    "Add",
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(

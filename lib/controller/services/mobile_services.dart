@@ -9,10 +9,48 @@ import 'package:kfc_restaurant/view/authscreens/login_screen.dart';
 import 'package:kfc_restaurant/view/authscreens/signin_logic_screen.dart';
 import 'package:kfc_restaurant/view/bottomnavigationbar/bottom_navigationbar_screen.dart';
 import 'package:kfc_restaurant/view/otpscreen/otp_screen.dart';
+import 'package:kfc_restaurant/view/registrationscreen/restaurant_reg_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class MobileAuthService {
+// Check Restaurant if registered
+  static checkRestaurantRegistration({required BuildContext context}) async {
+    bool restaurantIsRegistered = false;
+
+    try {
+      await firestore
+          .collection('Restaurant')
+          .where("restaurantUID", isEqualTo: auth.currentUser!.uid)
+          .get()
+          .then((value) {
+        value.size > 0
+            ? restaurantIsRegistered = true
+            : restaurantIsRegistered = false;
+        log("Restaurant is registered: $restaurantIsRegistered");
+
+        if (restaurantIsRegistered) {
+          Navigator.pushAndRemoveUntil(
+              context,
+              PageTransition(
+                  child: BottomNavigationUser(),
+                  type: PageTransitionType.rightToLeft),
+              (route) => false);
+        } else {
+          Navigator.pushAndRemoveUntil(
+              context,
+              PageTransition(
+                  child: RestaurantRegistrationScreen(),
+                  type: PageTransitionType.rightToLeft),
+              (route) => false);
+        }
+      });
+    } catch (e) {
+      log(e.toString());
+      throw Exception();
+    }
+  }
+
   //  Check authentication
   static bool checkAuthentication(BuildContext context) {
     User? user = auth.currentUser;
@@ -23,10 +61,7 @@ class MobileAuthService {
           (route) => false);
       return false;
     }
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomNavigationUser()),
-        (route) => false);
+    checkRestaurantRegistration(context: context);
     return true;
   }
 
