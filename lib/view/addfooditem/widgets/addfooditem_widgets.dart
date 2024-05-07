@@ -72,7 +72,7 @@ class AddFoodItemWidget extends StatelessWidget {
           SizedBox(
             height: 4.h,
           ),
-          FoodDetailsTextField(
+          CustomTextField(
             title: "Name",
             controller: foodNameController,
             hintText: "Enter the name of the food",
@@ -81,7 +81,7 @@ class AddFoodItemWidget extends StatelessWidget {
           SizedBox(
             height: 1.5.h,
           ),
-          FoodDetailsTextField(
+          CustomTextField(
             title: "Description",
             controller: foodDescriptionController,
             hintText: "Description of the food",
@@ -90,7 +90,7 @@ class AddFoodItemWidget extends StatelessWidget {
           SizedBox(
             height: 1.5.h,
           ),
-          FoodDetailsTextField(
+          CustomTextField(
             title: "Price",
             controller: foodPriceController,
             hintText: "Price for the food",

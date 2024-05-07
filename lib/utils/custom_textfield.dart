@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class FoodDetailsTextField extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
   final String title;
   final String hintText;
   final TextInputType keyboardType;
   final TextEditingController controller;
-  const FoodDetailsTextField(
+  const CustomTextField(
       {super.key,
       required this.title,
       required this.controller,
