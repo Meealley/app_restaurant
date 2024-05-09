@@ -38,15 +38,20 @@ class _LoginScreenUserState extends State<LoginScreenUser> {
       text: "Phone number",
       onPressed: () {
         log(_controller.text);
-        setState(() {
-          receiveOTPButtonPressed = true;
-        });
-        context
-            .read<MobileAuthProvier>()
-            .updateMobilenumber("$_selectedCountry${_controller.text.trim()}");
-        MobileAuthService.receiveOTP(
-            context: context,
-            mobileNumber: '$_selectedCountry${_controller.text.trim()}');
+        if (_controller.text.trim().isEmpty) {
+          setState(() {
+            receiveOTPButtonPressed = false;
+          });
+        } else {
+          setState(() {
+            receiveOTPButtonPressed = true;
+          });
+          context.read<MobileAuthProvier>().updateMobilenumber(
+              "$_selectedCountry${_controller.text.trim()}");
+          MobileAuthService.receiveOTP(
+              context: context,
+              mobileNumber: '$_selectedCountry${_controller.text.trim()}');
+        }
       },
       selectedCountry: _selectedCountry,
       controller: _controller,

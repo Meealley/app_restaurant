@@ -22,6 +22,18 @@ class _RestaurantRegistrationScreenState
   final TextEditingController _restaurantNameController =
       TextEditingController();
   final CarouselController _carouselController = CarouselController();
+  bool isRegisteredPressed = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        isRegisteredPressed = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +49,20 @@ class _RestaurantRegistrationScreenState
 
         log("Clicked on the Images container");
       },
+      onRegisterTapped: () {
+        if (_restaurantNameController.text.isEmpty ||
+            _restaurantLicensceController.text.isEmpty) {
+          setState(() {
+            isRegisteredPressed = false;
+          });
+        } else {
+          setState(() {
+            isRegisteredPressed = true;
+          });
+        }
+        log("registerTapped button clicked");
+      },
+      isRegisterPressed: isRegisteredPressed,
       restaurantLicenseController: _restaurantLicensceController,
       restaurantNameController: _restaurantNameController,
       carouselController: _carouselController,

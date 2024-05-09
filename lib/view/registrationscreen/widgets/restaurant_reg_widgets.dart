@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kfc_restaurant/controller/provider/restaurant_register_provider.dart';
+import 'package:kfc_restaurant/utils/custom_button.dart';
 import 'package:kfc_restaurant/utils/custom_textfield.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -13,6 +14,9 @@ class RestaurantRegistrationWidget extends StatelessWidget {
   final TextEditingController restaurantNameController;
   final TextEditingController restaurantLicenseController;
   final VoidCallback onTapped;
+  final VoidCallback onRegisterTapped;
+  final bool isRegisterPressed;
+
   final CarouselController carouselController;
 
   const RestaurantRegistrationWidget({
@@ -21,6 +25,8 @@ class RestaurantRegistrationWidget extends StatelessWidget {
     required this.restaurantLicenseController,
     required this.onTapped,
     required this.carouselController,
+    required this.onRegisterTapped,
+    required this.isRegisterPressed,
   });
 
   @override
@@ -136,6 +142,35 @@ class RestaurantRegistrationWidget extends StatelessWidget {
           ),
           SizedBox(
             height: 2.h,
+          ),
+          GestureDetector(
+            onTap: onRegisterTapped,
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 13, 60, 14),
+                borderRadius: BorderRadius.circular(5.sp),
+              ),
+              child: isRegisterPressed
+                  ? const Center(
+                      child: SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : const Center(
+                      child: Text(
+                      "Register",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    )),
+            ),
           ),
         ],
       ),
