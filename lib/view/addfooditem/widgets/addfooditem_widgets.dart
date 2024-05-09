@@ -24,6 +24,7 @@ class AddFoodItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: ListView(
         padding: EdgeInsets.symmetric(
           horizontal: 3.w,

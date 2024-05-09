@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kfc_restaurant/constants/constants.dart';
+import 'package:kfc_restaurant/controller/services/toast_message_services.dart';
 
 class ImageServices {
   static getImagesFromGallery({required BuildContext context}) async {
@@ -18,6 +21,11 @@ class ImageServices {
       }
     } else {
       // Show Toast Error toast message
+      ToastService.sendScaffoldAlert(
+        msg: "No Images Selected",
+        toastStatus: 'WARNING',
+        context: context,
+      );
     }
     log("The images are \n ${selectedImages.toList().toString()}");
     return selectedImages;
@@ -37,5 +45,21 @@ class ImageServices {
     });
 
     return imagesURL;
+  }
+
+  static pickSingleImage({required BuildContext context}) async {
+    File? selectedImage;
+    final pickedFile =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 100);
+    XFile? filePick = pickedFile;
+    if (filePick != null) {
+      selectedImage = File(filePick.path);
+      return selectedImage;
+    } else {
+      ToastService.sendScaffoldAlert(
+          msg: "No Images Selected", toastStatus: 'WARNING', context: context);
+    }
+    // log("The images are \n ${selectedImages.toList().toString()}");
+    // return selectedImage;
   }
 }
