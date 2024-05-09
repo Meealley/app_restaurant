@@ -143,6 +143,8 @@ class RestaurantRegistrationWidget extends StatelessWidget {
           SizedBox(
             height: 2.h,
           ),
+
+          // Start of the button
           GestureDetector(
             onTap: onRegisterTapped,
             child: Container(

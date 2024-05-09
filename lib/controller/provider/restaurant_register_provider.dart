@@ -16,7 +16,9 @@ class RestaurantRegisterProvider extends ChangeNotifier {
   updateRestaurantBannerImagesURL(BuildContext context) async {
     restaurantBannerImagesURL =
         await ImageServices.uploadImagesToFirebaseStorageAndGetURL(
-            images: restaurantBannerImages, context: context);
+      images: restaurantBannerImages,
+      context: context,
+    );
     notifyListeners();
   }
 }
