@@ -71,6 +71,8 @@ class _RestaurantRegistrationScreenState
               .read<RestaurantRegisterProvider>()
               .updateRestaurantBannerImagesURL(context);
           Position currentAddress = await LocationServices.getCurrentLocation();
+
+          LocationServices.registerRestaurantLocationInGeoFire();
           RestaurantModel data = RestaurantModel(
             restaurantName: _restaurantNameController.text.trim(),
             restaurantLicenseNumber: _restaurantLicensceController.text.trim(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kfc_restaurant/view/account/account_screen.dart';
 // import 'package:kfc_restaurant/view/addfooditem/addfooditem_screen.dart';
 import 'package:kfc_restaurant/view/bottomnavigationbar/widgets/bottom_nav_widgets.dart';
+import 'package:kfc_restaurant/view/home/home_screen.dart';
 import 'package:kfc_restaurant/view/menuscreen/menu_screen.dart';
 import 'package:kfc_restaurant/view/registrationscreen/restaurant_reg_screen.dart';
 import 'package:kfc_restaurant/view/statusscreen/status_screen.dart';
@@ -21,9 +22,9 @@ class _BottomNavigationUserState extends State<BottomNavigationUser> {
 
   List<Widget> _buildScreens() {
     return [
-      // const HomeScreen(),
+      const HomeScreen(),
       // const AddFoodItemScreen(),
-      const RestaurantRegistrationScreen(),
+      // const RestaurantRegistrationScreen(),
       const MenuScreen(),
       const StatusScreen(),
       const AccountScreen(),
