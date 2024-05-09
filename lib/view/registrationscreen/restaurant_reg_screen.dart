@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:kfc_restaurant/controller/provider/restaurant_register_provider.dart';
-import 'package:kfc_restaurant/controller/services/image_services.dart';
+// import 'package:kfc_restaurant/controller/services/image_services.dart';
 import 'package:kfc_restaurant/view/registrationscreen/widgets/restaurant_reg_widgets.dart';
 import 'package:provider/provider.dart';
 
