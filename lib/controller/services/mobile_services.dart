@@ -33,14 +33,14 @@ class MobileAuthService {
           Navigator.pushAndRemoveUntil(
               context,
               PageTransition(
-                  child: BottomNavigationUser(),
+                  child: const BottomNavigationUser(),
                   type: PageTransitionType.rightToLeft),
               (route) => false);
         } else {
           Navigator.pushAndRemoveUntil(
               context,
               PageTransition(
-                  child: RestaurantRegistrationScreen(),
+                  child: const RestaurantRegistrationScreen(),
                   type: PageTransitionType.rightToLeft),
               (route) => false);
         }

@@ -20,7 +20,7 @@ class _MenuScreenState extends State<MenuScreen> {
         Navigator.push(
           context,
           PageTransition(
-            child: AddFoodItemScreen(),
+            child: const AddFoodItemScreen(),
             type: PageTransitionType.rightToLeft,
           ),
         );

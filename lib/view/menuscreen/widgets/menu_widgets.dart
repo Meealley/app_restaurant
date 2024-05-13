@@ -11,12 +11,12 @@ class MenuWidgets extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: floatingButtonClicked,
-        child: FaIcon(
+        child: const FaIcon(
           FontAwesomeIcons.plus,
           color: Colors.white,
         ),
       ),
-      body: Center(
+      body: const Center(
         child: Text("This is the menu screen ... "),
       ),
     );

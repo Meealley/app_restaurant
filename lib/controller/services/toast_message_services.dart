@@ -25,7 +25,7 @@ class ToastService {
                       : Icons.warning_rounded,
               color: toastStatus == "SUCCESS" ? Colors.green : Colors.red,
             ),
-            SizedBox(
+            const SizedBox(
               width: 8,
             ),
             SizedBox(
@@ -42,7 +42,7 @@ class ToastService {
       animation: StyledToastAnimation.slideFromTop,
       reverseAnimation: StyledToastAnimation.slideFromTop,
       context: context,
-      duration: Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
       position: StyledToastPosition.top,
     );
   }

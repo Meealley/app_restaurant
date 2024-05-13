@@ -6,6 +6,6 @@ import 'package:uuid/uuid.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 ImagePicker picker = ImagePicker();
-Uuid uuid = Uuid();
+Uuid uuid = const Uuid();
 FirebaseStorage storage = FirebaseStorage.instance;
 FirebaseFirestore firestore = FirebaseFirestore.instance;
