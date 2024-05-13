@@ -36,6 +36,7 @@ class AddFoodItemWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
+        physics: BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(
           horizontal: 3.w,
           vertical: 2.h,

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class AddFoodProvder extends ChangeNotifier {
     );
     if (url.isNotEmpty) {
       foodImageURL = url[0];
+      log(foodImageURL!);
     }
     notifyListeners();
   }

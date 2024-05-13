@@ -10,7 +10,7 @@ class FoodDataCRUDServices {
     try {
       await firestore
           .collection("Food")
-          .doc(auth.currentUser!.uid)
+          .doc(data.foodID)
           .set(data.toMap())
           .whenComplete(() {
         Navigator.pop(context);
