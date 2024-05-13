@@ -56,10 +56,17 @@ class ImageServices {
       selectedImage = File(filePick.path);
       return selectedImage;
     } else {
+      // Show toast Error message
+
       ToastService.sendScaffoldAlert(
-          msg: "No Images Selected", toastStatus: 'WARNING', context: context);
+        msg: "No Images Selected",
+        toastStatus: 'WARNING',
+        context: context,
+      );
     }
     // log("The images are \n ${selectedImages.toList().toString()}");
     // return selectedImage;
   }
+
+// static uploadImageAndGetURL()
 }

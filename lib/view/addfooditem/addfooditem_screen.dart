@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kfc_restaurant/constants/constants.dart';
+import 'package:kfc_restaurant/controller/provider/add_food_provider.dart';
+import 'package:kfc_restaurant/controller/services/food_data_crud_services.dart';
+import 'package:kfc_restaurant/model/add_food_model.dart';
 import 'package:kfc_restaurant/view/addfooditem/widgets/addfooditem_widgets.dart';
+import 'package:provider/provider.dart';
 
 class AddFoodItemScreen extends StatefulWidget {
   const AddFoodItemScreen({super.key});
@@ -14,6 +19,7 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
       TextEditingController();
   final TextEditingController _foodPriceController = TextEditingController();
   bool _foodIsVegetarian = false;
+  bool _isAddFoodPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +39,37 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
             _foodIsVegetarian = false;
           });
         },
+        addImageTapped: () async {
+          await context
+              .read<AddFoodProvder>()
+              .pickFoodImageFromGallery(context);
+        },
+        addFoodButtonPressed: () async {
+          if (_foodNameController.text.trim().isEmpty ||
+              _foodPriceController.text.trim().isEmpty ||
+              _foodDescriptionController.text.trim().isEmpty) {
+            setState(() {
+              _isAddFoodPressed = false;
+            });
+          } else {
+            setState(() {
+              _isAddFoodPressed = true;
+            });
+            context
+                .read<AddFoodProvder>()
+                .uploadImageAndGetFoodImageURL(context);
+            AddFoodModel data = AddFoodModel(
+              name: _foodNameController.text.trim(),
+              restaurantUID: auth.currentUser!.uid,
+              description: _foodDescriptionController.text.trim(),
+              foodImageURL: context.read<AddFoodProvder>().foodImageURL!,
+              isVegetarian: _foodIsVegetarian,
+              price: _foodPriceController.text.trim(),
+            );
+            FoodDataCRUDServices.uploadFoodData(context, data);
+          }
+        },
+        isaddFoodPressed: _isAddFoodPressed,
       ),
     );
   }

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kfc_restaurant/controller/provider/add_food_provider.dart';
+import 'package:kfc_restaurant/utils/custom_button.dart';
 import 'package:kfc_restaurant/utils/custom_textfield.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class AddFoodItemWidget extends StatelessWidget {
@@ -10,6 +15,9 @@ class AddFoodItemWidget extends StatelessWidget {
   final bool foodIsVegetarian;
   final VoidCallback onTappedIsVegetarian;
   final VoidCallback onTappedNonVegetarian;
+  final VoidCallback addImageTapped;
+  final VoidCallback addFoodButtonPressed;
+  final bool isaddFoodPressed;
 
   const AddFoodItemWidget(
       {super.key,
@@ -18,7 +26,10 @@ class AddFoodItemWidget extends StatelessWidget {
       required this.foodPriceController,
       required this.foodIsVegetarian,
       required this.onTappedIsVegetarian,
-      required this.onTappedNonVegetarian});
+      required this.onTappedNonVegetarian,
+      required this.addImageTapped,
+      required this.addFoodButtonPressed,
+      required this.isaddFoodPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -33,42 +44,59 @@ class AddFoodItemWidget extends StatelessWidget {
           SizedBox(
             height: 2.h,
           ),
-          Container(
-            height: 20.h,
-            width: 94.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.sp),
-              color: Colors.grey.shade300,
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 4.h,
+          Consumer<AddFoodProvder>(builder: (context, addFoodProvider, child) {
+            return GestureDetector(
+              onTap: addImageTapped,
+              child: Container(
+                height: 20.h,
+                width: 94.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.sp),
+                  color: Colors.grey.shade300,
                 ),
-                Container(
-                  height: 5.h,
-                  width: 5.h,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.black),
-                  ),
-                  child: const Center(
-                    child: FaIcon(
-                      FontAwesomeIcons.plus,
-                      // color: Colors.white,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 1.h),
-                Text(
-                  "Add",
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                  ),
-                )
-              ],
-            ),
-          ),
+                child: Builder(builder: (context) {
+                  if (addFoodProvider.foodImage != null) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: .5.h),
+                      child: Image(
+                        image: FileImage(addFoodProvider.foodImage!),
+                        fit: BoxFit.contain,
+                      ),
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: 4.h,
+                        ),
+                        Container(
+                          height: 5.h,
+                          width: 5.h,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: const Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.plus,
+                              // color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 1.h),
+                        Text(
+                          "Add",
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                          ),
+                        )
+                      ],
+                    );
+                  }
+                }),
+              ),
+            );
+          }),
           SizedBox(
             height: 4.h,
           ),
@@ -197,6 +225,40 @@ class AddFoodItemWidget extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+
+          //Button Pressed
+          GestureDetector(
+            onTap: addFoodButtonPressed,
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 13, 60, 14),
+                borderRadius: BorderRadius.circular(5.sp),
+              ),
+              child: isaddFoodPressed
+                  ? const Center(
+                      child: SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : const Center(
+                      child: Text(
+                      "Add Food",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    )),
+            ),
           ),
         ],
       ),
