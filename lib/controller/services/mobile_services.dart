@@ -114,4 +114,12 @@ class MobileAuthService {
       throw Exception(e);
     }
   }
+
+  static signout(BuildContext context) {
+    auth.signOut();
+    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (BuildContext context) {
+      return const SigninLogiceScreen();
+    }), (route) => false);
+  }
 }

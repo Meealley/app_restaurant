@@ -63,9 +63,10 @@ class HorizontalCard extends StatelessWidget {
                     size: 13,
                   ),
                   Text(
-                    " From \$$price ",
+                    " From \u20A6$price ",
                     style: const TextStyle(
                       fontSize: 14,
+                      fontFamily: 'Roboto',
                     ),
                   ),
                   const Text("| "),
