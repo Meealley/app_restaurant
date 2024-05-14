@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:kfc_restaurant/controller/services/image_services.dart';
+import 'package:kfc_restaurant/controller/services/restaurant_crud_services.dart';
+import 'package:kfc_restaurant/model/restaurant_model.dart';
 
-class RestaurantRegisterProvider extends ChangeNotifier {
+class RestaurantProvider extends ChangeNotifier {
   List<File> restaurantBannerImages = [];
   List<String> restaurantBannerImagesURL = [];
+  RestaurantModel? restaurantData;
 
   getRestaurantBannerImages(BuildContext context) async {
     restaurantBannerImages =
@@ -19,6 +22,11 @@ class RestaurantRegisterProvider extends ChangeNotifier {
       images: restaurantBannerImages,
       context: context,
     );
+    notifyListeners();
+  }
+
+  getRestaurantData() async {
+    restaurantData = await RestaurantCRUDService.fetchRestaurantData();
     notifyListeners();
   }
 }

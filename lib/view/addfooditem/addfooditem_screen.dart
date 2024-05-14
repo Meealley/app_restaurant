@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kfc_restaurant/constants/constants.dart';
-import 'package:kfc_restaurant/controller/provider/add_food_provider.dart';
+import 'package:kfc_restaurant/controller/provider/food_provider.dart';
 import 'package:kfc_restaurant/controller/services/food_data_crud_services.dart';
 import 'package:kfc_restaurant/controller/services/toast_message_services.dart';
 import 'package:kfc_restaurant/model/add_food_model.dart';
@@ -41,9 +41,7 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
           });
         },
         addImageTapped: () async {
-          await context
-              .read<AddFoodProvder>()
-              .pickFoodImageFromGallery(context);
+          await context.read<FoodProvder>().pickFoodImageFromGallery(context);
         },
         addFoodButtonPressed: () async {
           if (_foodNameController.text.trim().isEmpty ||
@@ -61,16 +59,16 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
               _isAddFoodPressed = true;
             });
             await context
-                .read<AddFoodProvder>()
+                .read<FoodProvder>()
                 .uploadImageAndGetFoodImageURL(context);
             String foodID = uuid.v1().toString();
-            AddFoodModel data = AddFoodModel(
+            FoodModel data = FoodModel(
               foodID: foodID,
               uploadTime: DateTime.now(),
               name: _foodNameController.text.trim(),
               restaurantUID: auth.currentUser!.uid,
               description: _foodDescriptionController.text.trim(),
-              foodImageURL: context.read<AddFoodProvder>().foodImageURL!,
+              foodImageURL: context.read<FoodProvder>().foodImageURL!,
               isVegetarian: _foodIsVegetarian,
               price: _foodPriceController.text.trim(),
             );

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class AddFoodModel {
+class FoodModel {
   String name;
   String restaurantUID;
   String description;
@@ -10,7 +10,7 @@ class AddFoodModel {
   String foodImageURL;
   bool isVegetarian;
   String price;
-  AddFoodModel({
+  FoodModel({
     required this.name,
     required this.restaurantUID,
     required this.description,
@@ -34,8 +34,8 @@ class AddFoodModel {
     };
   }
 
-  factory AddFoodModel.fromMap(Map<String, dynamic> map) {
-    return AddFoodModel(
+  factory FoodModel.fromMap(Map<String, dynamic> map) {
+    return FoodModel(
       name: map['name'] as String,
       restaurantUID: map['restaurantUID'] as String,
       description: map['description'] as String,
@@ -49,6 +49,6 @@ class AddFoodModel {
 
   String toJson() => json.encode(toMap());
 
-  factory AddFoodModel.fromJson(String source) =>
-      AddFoodModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory FoodModel.fromJson(String source) =>
+      FoodModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

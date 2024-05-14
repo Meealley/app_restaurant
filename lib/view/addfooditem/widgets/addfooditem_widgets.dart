@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 // import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kfc_restaurant/controller/provider/add_food_provider.dart';
+import 'package:kfc_restaurant/controller/provider/food_provider.dart';
 import 'package:kfc_restaurant/utils/custom_button.dart';
 import 'package:kfc_restaurant/utils/custom_textfield.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +45,7 @@ class AddFoodItemWidget extends StatelessWidget {
           SizedBox(
             height: 2.h,
           ),
-          Consumer<AddFoodProvder>(builder: (context, addFoodProvider, child) {
+          Consumer<FoodProvder>(builder: (context, addFoodProvider, child) {
             return GestureDetector(
               onTap: addImageTapped,
               child: Container(

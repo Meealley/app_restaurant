@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kfc_restaurant/controller/provider/add_food_provider.dart';
+import 'package:kfc_restaurant/controller/provider/food_provider.dart';
 import 'package:kfc_restaurant/controller/provider/auth_provider.dart';
 import 'package:kfc_restaurant/controller/provider/restaurant_register_provider.dart';
 import 'package:kfc_restaurant/firebase_options.dart';
@@ -30,11 +30,11 @@ class KFCApp extends StatelessWidget {
           ChangeNotifierProvider<MobileAuthProvier>(
             create: (_) => MobileAuthProvier(),
           ),
-          ChangeNotifierProvider<RestaurantRegisterProvider>(
-            create: (_) => RestaurantRegisterProvider(),
+          ChangeNotifierProvider<RestaurantProvider>(
+            create: (_) => RestaurantProvider(),
           ),
-          ChangeNotifierProvider<AddFoodProvder>(
-            create: (_) => AddFoodProvder(),
+          ChangeNotifierProvider<FoodProvder>(
+            create: (_) => FoodProvder(),
           ),
         ],
         child: MaterialApp(

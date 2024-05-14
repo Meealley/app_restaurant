@@ -52,7 +52,7 @@ class _RestaurantRegistrationScreenState
 
         // await ImageServices.
         await context
-            .read<RestaurantRegisterProvider>()
+            .read<RestaurantProvider>()
             .getRestaurantBannerImages(context);
 
         log("Clicked on the Images container");
@@ -68,7 +68,7 @@ class _RestaurantRegistrationScreenState
             isRegisteredPressed = true;
           });
           await context
-              .read<RestaurantRegisterProvider>()
+              .read<RestaurantProvider>()
               .updateRestaurantBannerImagesURL(context);
           Position currentAddress = await LocationServices.getCurrentLocation();
 
@@ -77,9 +77,8 @@ class _RestaurantRegistrationScreenState
             restaurantName: _restaurantNameController.text.trim(),
             restaurantLicenseNumber: _restaurantLicensceController.text.trim(),
             restaurantUID: auth.currentUser!.uid,
-            bannerImages: context
-                .read<RestaurantRegisterProvider>()
-                .restaurantBannerImagesURL,
+            bannerImages:
+                context.read<RestaurantProvider>().restaurantBannerImagesURL,
             address: AddressModel(
               latitude: currentAddress.latitude,
               longitude: currentAddress.longitude,

@@ -3,6 +3,7 @@
 import 'dart:developer';
 // import 'dart:js';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kfc_restaurant/constants/constants.dart';
 import 'package:kfc_restaurant/model/restaurant_model.dart';
@@ -25,6 +26,21 @@ class RestaurantCRUDService {
             ),
             (route) => false);
       });
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
+
+  static fetchRestaurantData() async {
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> snapshot = await firestore
+          .collection('Restaurant')
+          .doc(auth.currentUser!.uid)
+          .get();
+
+      RestaurantModel data = RestaurantModel.fromMap(snapshot.data()!);
+      return data;
     } catch (e) {
       log(e.toString());
       throw Exception(e);

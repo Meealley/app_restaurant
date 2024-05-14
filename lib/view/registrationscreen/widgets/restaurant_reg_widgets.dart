@@ -39,7 +39,7 @@ class RestaurantRegistrationWidget extends StatelessWidget {
           SizedBox(
             height: 2.h,
           ),
-          Consumer<RestaurantRegisterProvider>(
+          Consumer<RestaurantProvider>(
               builder: (context, registrationProvider, child) {
             if (registrationProvider.restaurantBannerImages.isEmpty) {
               return GestureDetector(
