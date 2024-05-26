@@ -18,7 +18,9 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
   final TextEditingController _foodNameController = TextEditingController();
   final TextEditingController _foodDescriptionController =
       TextEditingController();
-  final TextEditingController _foodPriceController = TextEditingController();
+  final TextEditingController _discountedPriceController =
+      TextEditingController();
+  final TextEditingController _actualPriceController = TextEditingController();
   bool _foodIsVegetarian = false;
   bool _isAddFoodPressed = false;
 
@@ -29,7 +31,8 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
         foodNameController: _foodNameController,
         foodDescriptionController: _foodDescriptionController,
         foodIsVegetarian: _foodIsVegetarian,
-        foodPriceController: _foodPriceController,
+        discountedPriceController: _discountedPriceController,
+        actualPriceController: _actualPriceController,
         onTappedIsVegetarian: () {
           setState(() {
             _foodIsVegetarian = true;
@@ -45,7 +48,8 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
         },
         addFoodButtonPressed: () async {
           if (_foodNameController.text.trim().isEmpty ||
-              _foodPriceController.text.trim().isEmpty ||
+              _discountedPriceController.text.trim().isEmpty ||
+              _actualPriceController.text.trim().isEmpty ||
               _foodDescriptionController.text.trim().isEmpty) {
             setState(() {
               _isAddFoodPressed = false;
@@ -70,9 +74,11 @@ class _AddFoodItemScreenState extends State<AddFoodItemScreen> {
               description: _foodDescriptionController.text.trim(),
               foodImageURL: context.read<FoodProvder>().foodImageURL!,
               isVegetarian: _foodIsVegetarian,
-              price: _foodPriceController.text.trim(),
+              actualPrice: _actualPriceController.text.trim(),
+              discountedPrice: _discountedPriceController.text.trim(),
             );
-            FoodDataCRUDServices.uploadFoodData(context, data);
+            await FoodDataCRUDServices.uploadFoodData(context, data);
+            await context.read<FoodProvder>().getFoodData();
           }
         },
         isaddFoodPressed: _isAddFoodPressed,

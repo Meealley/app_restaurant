@@ -12,15 +12,24 @@ class MenuWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
-          onPressed: floatingButtonClicked,
-          child: const FaIcon(
-            FontAwesomeIcons.plus,
-            color: Colors.white,
+      appBar: AppBar(
+        title: Text(
+          "Menu Screen 🗒️",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
         ),
-        body: Consumer<FoodProvder>(builder: (context, foodProvider, child) {
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        onPressed: floatingButtonClicked,
+        child: const FaIcon(
+          FontAwesomeIcons.plus,
+          color: Colors.white,
+        ),
+      ),
+      body: Consumer<FoodProvder>(
+        builder: (context, foodProvider, child) {
           if (foodProvider.items.isEmpty) {
             return Center(
               child: Text("Add Food items"),
@@ -37,6 +46,7 @@ class MenuWidgets extends StatelessWidget {
               itemBuilder: (context, index) {
                 FoodModel foodData = foodProvider.items[index];
                 return Container(
+                  margin: EdgeInsets.symmetric(vertical: 1.h),
                   padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.sp),
@@ -84,12 +94,25 @@ class MenuWidgets extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
-                            '\u20A6${foodData.price}',
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontFamily: 'Roboto',
-                            ),
+                          Column(
+                            children: [
+                              Text(
+                                '\u20A6${foodData.discountedPrice}',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  decoration: TextDecoration.lineThrough,
+                                  color: Colors.grey,
+                                  fontFamily: 'Roboto',
+                                ),
+                              ),
+                              Text(
+                                '\u20A6${foodData.actualPrice}',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontFamily: 'Roboto',
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -99,6 +122,8 @@ class MenuWidgets extends StatelessWidget {
               },
             );
           }
-        }));
+        },
+      ),
+    );
   }
 }

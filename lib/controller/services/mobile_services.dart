@@ -115,6 +115,7 @@ class MobileAuthService {
     }
   }
 
+// For signing out
   static signout(BuildContext context) {
     auth.signOut();
     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(

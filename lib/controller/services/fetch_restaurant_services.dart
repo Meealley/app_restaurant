@@ -1,0 +1,3 @@
+class RestaurantServices {
+  static getNearbyRestaurants() {}
+}

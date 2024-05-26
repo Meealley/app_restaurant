@@ -11,7 +11,8 @@ import 'package:sizer/sizer.dart';
 class AddFoodItemWidget extends StatelessWidget {
   final TextEditingController foodNameController;
   final TextEditingController foodDescriptionController;
-  final TextEditingController foodPriceController;
+  final TextEditingController discountedPriceController;
+  final TextEditingController actualPriceController;
   final bool foodIsVegetarian;
   final VoidCallback onTappedIsVegetarian;
   final VoidCallback onTappedNonVegetarian;
@@ -23,13 +24,14 @@ class AddFoodItemWidget extends StatelessWidget {
       {super.key,
       required this.foodNameController,
       required this.foodDescriptionController,
-      required this.foodPriceController,
+      required this.discountedPriceController,
       required this.foodIsVegetarian,
       required this.onTappedIsVegetarian,
       required this.onTappedNonVegetarian,
       required this.addImageTapped,
       required this.addFoodButtonPressed,
-      required this.isaddFoodPressed});
+      required this.isaddFoodPressed,
+      required this.actualPriceController});
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +122,15 @@ class AddFoodItemWidget extends StatelessWidget {
             height: 1.5.h,
           ),
           CustomTextField(
-            title: "Price",
-            controller: foodPriceController,
-            hintText: "Price for the food",
+            title: "Actual Price",
+            controller: actualPriceController,
+            hintText: "Actual Price for the food",
+            keyboardType: TextInputType.text,
+          ),
+          CustomTextField(
+            title: "Discount Price",
+            controller: discountedPriceController,
+            hintText: "Discount amount for the food",
             keyboardType: TextInputType.text,
           ),
           SizedBox(
